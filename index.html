@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>For Daoudie 💌</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Parisienne&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 15% 20%, #ffffffaa 0 2px, transparent 3px),
+        radial-gradient(circle at 85% 70%, #ffffffaa 0 2px, transparent 3px),
+        linear-gradient(135deg, #f6bfd3, #fff0f5, #efb0c8);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-family: "Cormorant Garamond", Georgia, serif;
+      color: #71374c;
+
+      overflow-x: hidden;
+    }
+
+    /* Floating little decorations */
+
+    .floating {
+      position: fixed;
+      font-size: 22px;
+      opacity: 0.55;
+      animation: float 7s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    .one {
+      left: 8%;
+      top: 15%;
+    }
+
+    .two {
+      right: 10%;
+      top: 20%;
+      animation-delay: 2s;
+    }
+
+    .three {
+      left: 15%;
+      bottom: 15%;
+      animation-delay: 4s;
+    }
+
+    .four {
+      right: 15%;
+      bottom: 12%;
+      animation-delay: 1s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-20px) rotate(10deg);
+      }
+    }
+
+    .container {
+      width: 92%;
+      max-width: 720px;
+      text-align: center;
+      padding: 40px 0;
+    }
+
+    /* Intro */
+
+    .small-title {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 12px;
+      color: #9b536d;
+    }
+
+    h1 {
+      font-family: "Parisienne", cursive;
+      font-size: clamp(55px, 10vw, 85px);
+      font-weight: normal;
+      color: #8e3e5b;
+      margin: 5px 0;
+    }
+
+    .subtitle {
+      font-size: 19px;
+      margin-top: 0;
+      opacity: 0.8;
+    }
+
+    /* =========================
+       ENVELOPE
+       ========================= */
+
+    .envelope-button {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      width: min(90vw, 440px);
+      padding: 0;
+      transition: 0.3s ease;
+    }
+
+    .envelope-button:hover {
+      transform: translateY(-7px) rotate(-1deg);
+    }
+
+    .envelope-button:active {
+      transform: scale(0.97);
+    }
+
+    .envelope {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1.55 / 1;
+
+      background: #fff4e9;
+      border: 2px solid #d98aa2;
+
+      border-radius: 5px;
+
+      box-shadow:
+        0 20px 45px rgba(115, 44, 70, 0.18);
+
+      overflow: hidden;
+    }
+
+    /* Envelope flap */
+
+    .flap {
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 64%;
+
+      background: #f9dfdf;
+
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        50% 100%
+      );
+
+      border-bottom: 2px solid #d98aa2;
+
+      z-index: 3;
+    }
+
+    /* Envelope folds */
+
+    .fold-left,
+    .fold-right {
+      position: absolute;
+
+      bottom: 0;
+
+      width: 72%;
+      height: 100%;
+
+      background: #fbe9df;
+
+      z-index: 2;
+    }
+
+    .fold-left {
+      left: 0;
+
+      clip-path: polygon(
+        0 100%,
+        0 48%,
+        100% 100%
+      );
+    }
+
+    .fold-right {
+      right: 0;
+
+      clip-path: polygon(
+        100% 100%,
+        100% 48%,
+        0 100%
+      );
+    }
+
+    /* Wax seal */
+
+    .seal {
+      position: absolute;
+
+      z-index: 5;
+
+      left: 50%;
+      top: 54%;
+
+      transform: translate(-50%, -50%);
+
+      width: 75px;
+      height: 75px;
+
+      border-radius: 50%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background: #b74e70;
+
+      border: 5px double #f6d2d8;
+
+      color: white;
+
+      font-size: 32px;
+
+      box-shadow:
+        0 8px 16px rgba(116, 37, 63, 0.25);
+    }
+
+    .click-text {
+      margin-top: 15px;
+
+      font-size: 18px;
+
+      font-style: italic;
+
+      color: #7d3f55;
+    }
+
+    /* =========================
+       LETTER
+       ========================= */
+
+    .letter {
+      display: none;
+
+      margin: 30px auto 0;
+
+      width: min(92vw, 650px);
+
+      padding:
+        45px
+        clamp(25px, 7vw, 65px);
+
+      background: #fff8ec;
+
+      border: 1px solid #d7a078;
+
+      box-shadow:
+        0 18px 50px rgba(94, 48, 44, 0.18);
+
+      text-align: left;
+
+      position: relative;
+
+      animation: letterOpen 0.8s ease;
+    }
+
+    @keyframes letterOpen {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .letter::before {
+      content: "♥";
+
+      position: absolute;
+
+      top: 15px;
+      left: 20px;
+
+      color: #c76b83;
+
+      font-size: 21px;
+    }
+
+    .letter::after {
+      content: "♡";
+
+      position: absolute;
+
+      bottom: 15px;
+      right: 20px;
+
+      color: #c76b83;
+
+      font-size: 24px;
+    }
+
+    .date {
+      text-align: right;
+
+      font-style: italic;
+
+      font-size: 16px;
+    }
+
+    .letter h2 {
+      font-family: "Parisienne", cursive;
+
+      font-size: 46px;
+
+      font-weight: normal;
+
+      color: #8f3f5c;
+
+      margin:
+        15px 0
+        10px;
+    }
+
+    .letter p {
+      font-size: 20px;
+
+      line-height: 1.7;
+
+      margin: 14px 0;
+    }
+
+    .signature {
+      font-family: "Parisienne", cursive;
+
+      font-size: 36px;
+
+      text-align: right;
+
+      margin-top: 30px;
+
+      color: #8e3e5b;
+    }
+
+    /* Closing button */
+
+    .closing {
+      text-align: center;
+
+      margin-top: 30px;
+    }
+
+    .close-button {
+      border: 1px solid #a84d69;
+
+      background: #b74e70;
+
+      color: white;
+
+      padding: 12px 25px;
+
+      border-radius: 50px;
+
+      font-family: inherit;
+
+      font-size: 17px;
+
+      cursor: pointer;
+
+      transition: 0.2s ease;
+
+      box-shadow:
+        0 8px 18px rgba(116, 37, 63, 0.18);
+    }
+
+    .close-button:hover {
+      background: #9f405f;
+
+      transform: translateY(-2px);
+    }
+
+    .closing-note {
+      margin-top: 10px;
+
+      font-size: 14px;
+
+      opacity: 0.7;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Phone */
+
+    @media (max-width: 520px) {
+
+      .container {
+        padding: 25px 0;
+      }
+
+      .letter {
+        padding: 40px 25px;
+      }
+
+      .letter h2 {
+        font-size: 39px;
+      }
+
+      .letter p {
+        font-size: 18px;
+      }
+
+      .seal {
+        width: 65px;
+        height: 65px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Cute floating decorations -->
+
+  <div class="floating one">♡</div>
+  <div class="floating two">✦</div>
+  <div class="floating three">♡</div>
+  <div class="floating four">✦</div>
+
+
+  <main class="container">
+
+    <!-- =========================
+         FRONT PAGE
+         ========================= -->
+
+    <section id="intro">
+
+      <div class="small-title">
+        a little something, just for you
+      </div>
+
+      <h1>For Daoudie</h1>
+
+      <p class="subtitle">
+        A letter that has been waiting to be opened...
+      </p>
+
+    </section>
+
+
+    <!-- =========================
+         CLICKABLE ENVELOPE
+         ========================= -->
+
+    <button
+      class="envelope-button"
+      id="openEnvelope"
+      aria-label="Open love letter"
+    >
+
+      <div class="envelope">
+
+        <div class="flap"></div>
+
+        <div class="fold-left"></div>
+
+        <div class="fold-right"></div>
+
+        <div class="seal">
+          ♥
+        </div>
+
+      </div>
+
+      <div class="click-text">
+        click the seal to open ♡
+      </div>
+
+    </button>
+
+
+    <!-- =========================
+         YOUR LETTER
+         ========================= -->
+
+    <article class="letter" id="letter">
+
+      <div class="date">
+        05 October 2026
+      </div>
+
+      <h2>
+        My dearest Daoudie,
+      </h2>
+
+
+      <!--
+      ==================================================
+      ✨✨✨ PUT YOUR LETTER HERE ✨✨✨
+
+      Replace the three paragraphs below with your
+      actual letter.
+
+      Example:
+
+      <p>
+        My love, I wanted to write this because...
+      </p>
+
+      You can add as many <p> paragraphs as you want.
+      ==================================================
+      -->
+
+
+      <p>
+        How am I supposed to write about you when somehow, every thought I have seems to lead back to you, involuntarily.
+I swear, my love, you have taken up so much space in my heart that I don't even remember what my mind was like before you. You are everywhere in me. In my thoughts, in my smiles, in the songs I listen to, in my day, in the random moments when I suddenly stop and think, God, I miss him.
+I miss you constantly.
+Even when I've just talked to you or still am talking to you.
+Even when I know I'll hear from you again.
+Even when you're only gone for a little while.
+Some ridiculous part of my heart is always asking, what is my babie doing? Is my Jaanu okay? Does he know how much I love him? And the answer to that last question will probably always be no, because I don't think I'll ever find words big enough for what I feel for you.
+My Daoudie, I am so ridiculously, hopelessly, stupidly, most ardently in love with you.
+You are the first person I want to tell everything to.
+Something beautiful happens? I want you.
+Something hurts? I want you.
+I see something cute? I want to send it to you.
+I hear a song that reminds me of you? Suddenly I'm thinking about you for the next idk how many hours.
+I have a random thought at 2 am? Somehow, it's probably about you because you are just always there.
+
+      </p>
+
+      <p>
+        You have become my favorite destination for every thought my brain produces and honestly, I don't want it any other way. My Dudie, I think about you far more than I probably should. I wonder what you're doing. I wonder what you're thinking about. I wonder if you miss me. I wonder if you ever randomly smile because you thought of me like how I start giggling randomly at thoughts of you. I wonder what it would feel like to have you right beside me instead of having to miss you through a darn screen. 
+And then I imagine it, you beside me, your hand in mine, my head against your shoulder, your arms around me and suddenly I don't want imagination anymore, I just want you around. I want your presence so badly sometimes that missing you feels almost physical and I can practically feel a void within my heart. My baby, if I could teleport to you whenever I missed you, I genuinely don't think I'd ever stay away. I'd just appear beside you and hug you and then I'd probably refuse to let go. I'd bury my face against you and stay there until all the missing you feelings disappeared and then five minutes later I'd probably start missing you again anyway.
+You've made me greedy for your presence. I don't just want a little bit of you. I want your laughter, all your attention, your stories, your sleepy voice, your random thoughts, your stupid jokes, your affection, your time, your random “I love you.” I want all the tiny pieces of you that you might not even realize are precious. Madno, you are my favorite person in this entire world and when I say that I mean it with my whole heart.
+There is something about you that makes everything feel softer. Your name can change my entire mood and one message from you can make my whole day better. A little “I miss you” from you can make my heart race and when you call me something sweet, oh my God, you don't understand what that does to me. You could probably say the most ordinary sentence in the world and I'd still sit there smiling because it came from you.
+Myoun zuvv, you have this ridiculous power over my heart. I don't know how you did it and I don't know when it happened. I just know that somewhere along the way, you became the person my heart automatically searches for and now you're there all the time. My heart has your name written all over it. The way you do little things unknowingly and the way you are, like smacking those cute little lips of yours, the way you smile ever so slightly, the way you look so innocent all submissive hehe, I notice everything. Because when you're the person I adore this much, how could I not? You're literally the person I want to love until you get sick of hearing me say it athough knowing me, I'd probably keep saying it anyway because,
+I love you.
+I love you.
+I love you.
+I LOVE YOU. <3
+
+      </p>
+
+      <p>
+        And yes Jaanu, I am greedy. I want more time with you. More closeness, more of your love. Because every time I get a little piece of you, my heart immediately wants another. You literally get me smiling randomly, staring at my phone waiting for your text, hearing a song and immediately thinking of you, imagine myself lying in bed at night replaying conversations with you, wishing you were beside me, imagining how you would whisper my name out when I am around. That is how much of my world you have become since you have become my deepest yearning. My favorite name, my favorite person and of course, my home.
+And if loving you this much is ridiculous, then let me be ridiculous. If missing you this much is dramatic, then let me be dramatic. If being completely and utterly devoted to you is embarrassing, then I will happily embarrass myself forever. Because babie, I don't want to be sensible about you. I want to adore you, love you loudly and make you feel cherished. I want you to know that by just existing you give someone the will to wake up and look forward to the next day
+I love you, my Daoudie. More than I can fit into this letter or say in a thousand words and more than I know how to explain and if you ever forget, I'll tell you again and again and again, as many times as you need because you are my love, my Jaanu, my bubba, my whole heart.
+And I am hopelessly, endlessly, ridiculously in love with you. 
+Forever Yours,
+Afeefa.
+P.S. I still miss you, lolsies. </3
+
+      </p>
+
+
+      <!-- You can delete this paragraph if you don't want it -->
+
+      <p>
+        No matter how many words I put here,
+        somehow there will always be more that I want to say.
+      </p>
+
+
+      <!-- SIGNATURE -->
+
+      <div class="signature">
+        Always yours ♡
+      </div>
+
+
+      <!-- CLOSING BUTTON -->
+
+      <div class="closing">
+
+        <button
+          class="close-button"
+          id="closeLetter"
+        >
+          Fold this letter 💌
+        </button>
+
+        <div class="closing-note">
+          Some letters are meant to be opened more than once.
+        </div>
+
+      </div>
+
+    </article>
+
+  </main>
+
+
+  <!-- =========================
+       JAVASCRIPT
+       ========================= -->
+
+  <script>
+
+    const envelope =
+      document.getElementById("openEnvelope");
+
+    const letter =
+      document.getElementById("letter");
+
+    const intro =
+      document.getElementById("intro");
+
+    const closeButton =
+      document.getElementById("closeLetter");
+
+
+    /* Open letter */
+
+    envelope.addEventListener("click", function() {
+
+      envelope.classList.add("hidden");
+
+      intro.classList.add("hidden");
+
+      letter.style.display = "block";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    });
+
+
+    /* Close letter */
+
+    closeButton.addEventListener("click", function() {
+
+      letter.style.display = "none";
+
+      intro.classList.remove("hidden");
+
+      envelope.classList.remove("hidden");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>
